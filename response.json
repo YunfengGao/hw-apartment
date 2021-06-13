@@ -1,0 +1,81 @@
+{
+  "returnCode": "100",
+  "dataList": [
+    {
+      "groupName": "荔枝苑",
+      "typeName": "一室一厅",
+      "orderCount": 5997
+    },
+    {
+      "groupName": "荔枝苑",
+      "typeName": "两室一厅",
+      "orderCount": 4152
+    },
+    {
+      "groupName": "百草园公寓",
+      "typeName": "普通公寓房",
+      "orderCount": 52
+    },
+    {
+      "groupName": "百草园公寓",
+      "typeName": "精装公寓房",
+      "orderCount": 3529
+    },
+    {
+      "groupName": "南方公寓",
+      "typeName": "一室一厅",
+      "orderCount": 348
+    },
+    {
+      "groupName": "南方公寓",
+      "typeName": "两室一厅",
+      "orderCount": 309
+    },
+    {
+      "groupName": "南方公寓",
+      "typeName": "单房",
+      "orderCount": 31
+    },
+    {
+      "groupName": "溪村公寓",
+      "typeName": "一室一厅",
+      "orderCount": 2842
+    },
+    {
+      "groupName": "溪村公寓",
+      "typeName": "单房",
+      "orderCount": 1667
+    },
+    {
+      "groupName": "苏家坨",
+      "typeName": "一居室",
+      "orderCount": 196
+    },
+    {
+      "groupName": "苏家坨",
+      "typeName": "二居室",
+      "orderCount": 262
+    },
+    {
+      "groupName": "环保园",
+      "typeName": "一居室",
+      "orderCount": 649
+    },
+    {
+      "groupName": "环保园",
+      "typeName": "二居室",
+      "orderCount": 588
+    },
+    {
+      "groupName": "太舟坞",
+      "typeName": "二居室",
+      "orderCount": 519
+    },
+    {
+      "groupName": "太舟坞",
+      "typeName": "三居室",
+      "orderCount": 35
+    }
+  ],
+  "returnMessage": "成功查询"
+}
