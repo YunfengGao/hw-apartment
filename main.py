@@ -2,6 +2,7 @@ from datetime import datetime, timedelta, timezone
 import requests
 import sqlite3
 import sys
+import matplotlib.pyplot as plt
 
 
 class Data(object):
@@ -65,7 +66,7 @@ class Dao(object):
     def get_apartment_status(self, apartment_name, apartment_type):
         con = sqlite3.connect(self.__db_name)
         cur = con.cursor()
-        cur.execute('select date, count from apartment_details where name = ? and type = ?',
+        cur.execute('select date, count from apartment_details where name = ? and type = ? order by date',
                     (apartment_name, apartment_type))
         result = cur.fetchall()
         cur.close()
@@ -74,14 +75,38 @@ class Dao(object):
         return result
 
 
+class Drawer(object):
+    def draw(self, x, y, color, label):
+        plt.title('Number of people in line at apartment')
+        plt.plot(x, y, color=color, label=label)
+        plt.legend()
+
+        plt.xlabel('date')
+        plt.ylabel('count')
+        plt.savefig('pic.png')
+        # plt.show()
+
+
+def sync_data(argv):
+    apartment = Data(argv[1], argv[2]).get_apartment()
+    Dao().insert(apartment)
+
+
+def display_data():
+    bcy_normal = Dao().get_apartment_status('百草园公寓', '普通公寓房')
+    x = [(bcy_normal[i][0]).split(' ')[0] for i in range(len(bcy_normal))]
+    y = [bcy_normal[i][1] for i in range(len(bcy_normal))]
+    Drawer().draw(x, y, 'green', 'bcy_normal')
+
+
 def main(argv):
     # argv[1]:uid
     # argv[2]:password
     if len(argv) <= 1:
         print('usage: python main.py uid password')
         return
-    apartment = Data(argv[1], argv[2]).get_apartment()
-    Dao().insert(apartment)
+    sync_data(argv)
+    display_data()
 
 
 if __name__ == '__main__':
