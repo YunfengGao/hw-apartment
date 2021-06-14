@@ -56,21 +56,32 @@ class Dao(object):
         utc_8 = timezone(timedelta(hours=8))
         create_time = datetime.now(tz=utc_8).strftime('%Y-%m-%d %H:%M:%S')
         for row in data:
-            cur.execute("insert into apartment_details values (?,?,?,?)",
+            cur.execute('insert into apartment_details values (?,?,?,?)',
                         (row['groupName'], row['typeName'], row['orderCount'], create_time))
         cur.close()
         con.commit()
         con.close()
 
+    def get_apartment_status(self, apartment_name, apartment_type):
+        con = sqlite3.connect(self.__db_name)
+        cur = con.cursor()
+        cur.execute('select date, count from apartment_details where name = ? and type = ?',
+                    (apartment_name, apartment_type))
+        result = cur.fetchall()
+        cur.close()
+        con.commit()
+        con.close()
+        return result
+
 
 def main(argv):
     # argv[1]:uid
     # argv[2]:password
-    if len(argv) > 1:
-        apartment = Data(argv[1], argv[2]).get_apartment()
-        Dao().insert(apartment)
+    if len(argv) <= 1:
+        print('usage: python main.py uid password')
         return
-    print('usage: python main.py uid password')
+    apartment = Data(argv[1], argv[2]).get_apartment()
+    Dao().insert(apartment)
 
 
 if __name__ == '__main__':
