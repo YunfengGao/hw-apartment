@@ -3,6 +3,7 @@ import requests
 import sqlite3
 import sys
 import matplotlib.pyplot as plt
+from matplotlib import ticker
 
 
 class Data(object):
@@ -81,6 +82,7 @@ class Drawer(object):
         plt.plot(x, y, color=color, label=label)
         plt.legend()
 
+        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(2))
         plt.xlabel('date')
         plt.ylabel('count')
         plt.savefig('pic.png')
