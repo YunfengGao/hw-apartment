@@ -82,7 +82,7 @@ class Drawer(object):
         plt.plot(x, y, color=color, label=label)
         plt.legend()
 
-        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(2))
+        plt.gca().xaxis.set_major_locator(ticker.MultipleLocator(7))
         plt.xlabel('date')
         plt.ylabel('count')
         plt.savefig('pic.png')
